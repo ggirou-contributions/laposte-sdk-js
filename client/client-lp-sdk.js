@@ -63708,6 +63708,20 @@ Digiposte.prototype.getDocs = function (opt, cb) {
     .nodeify(cb);
 };
 
+/**
+ * Get document by id.
+ *
+ * @method getDoc
+ * @async
+ * @param {Object} options Options object.
+ * @param {Integer} options.id The document id.
+ * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
+ * @optional
+ * @return {Promise} A promise, fulfilled when the request is done.
+ * @throws {HttpError} An HTTP error including status code and body.
+ * @example
+ * @TODO
+ */
 Digiposte.prototype.getDoc = function (opt, cb) {
   var that = this;
   return that.apiRequest(
@@ -63718,6 +63732,37 @@ Digiposte.prototype.getDoc = function (opt, cb) {
         'User-Token': that.dgpAccessToken
       },
       json: true
+    })
+    .spread(httpErrorHandler)
+    .nodeify(cb);
+};
+
+/**
+ * Get document thumbnail.
+ *
+ * The result is a Buffer populated with binary data of downloaded thumbnail.
+ *
+ * @method getDoc
+ * @async
+ * @param {Object} options Options object.
+ * @param {Integer} options.id The document id.
+ * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
+ * @optional
+ * @return {Promise} A promise, fulfilled when the request is done.
+ * @throws {HttpError} An HTTP error including status code and body.
+ * @example
+ * @TODO
+ */
+Digiposte.prototype.getDocThumbnail = function (opt, cb) {
+  var that = this;
+  return that.apiRequest(
+    {
+      uri: util.format('/document/%s/thumbnail', opt.id),
+      headers: {
+        'Authorization': util.format('Bearer %s', that.accessToken),
+        'User-Token': that.dgpAccessToken
+      },
+      encoding: null
     })
     .spread(httpErrorHandler)
     .nodeify(cb);
