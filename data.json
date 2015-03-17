@@ -1,0 +1,350 @@
+{
+    "project": {
+        "name": "laposte-sdk",
+        "description": "La Poste Open API SDK for JavaScript in the browser and Node.js",
+        "version": "0.0.1",
+        "url": ""
+    },
+    "files": {
+        "lib/lp-sdk.js": {
+            "name": "lib/lp-sdk.js",
+            "modules": {
+                "laPosteSdk": 1
+            },
+            "classes": {
+                "HttpError": 1,
+                "LaPoste": 1,
+                "Digiposte": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "laPosteSdk": {
+            "name": "laPosteSdk",
+            "submodules": {},
+            "classes": {
+                "HttpError": 1,
+                "LaPoste": 1,
+                "Digiposte": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/lp-sdk.js",
+            "line": 132,
+            "description": "Provides the base class of the La Poste Open API SDK."
+        }
+    },
+    "classes": {
+        "HttpError": {
+            "name": "HttpError",
+            "shortname": "HttpError",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "laPosteSdk",
+            "file": "lib/lp-sdk.js",
+            "line": 10,
+            "extends": "Error",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "statusCode",
+                    "description": "Status code of the HTTP response.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "body",
+                    "description": "Body of the HTTP response.",
+                    "type": "String",
+                    "optional": true
+                }
+            ]
+        },
+        "LaPoste": {
+            "name": "LaPoste",
+            "shortname": "LaPoste",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "laPosteSdk",
+            "file": "lib/lp-sdk.js",
+            "line": 48,
+            "description": "This class provides general service about La Poste Open API.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "config",
+                            "description": "Custom configuration.",
+                            "type": "String",
+                            "optional": true,
+                            "props": [
+                                {
+                                    "name": "baseUrl",
+                                    "description": "Base URL of API resources.",
+                                    "type": "String",
+                                    "optional": true,
+                                    "optdefault": "https://api.laposte.fr/digiposte/1.0"
+                                },
+                                {
+                                    "name": "request",
+                                    "description": "Default configuration for request module.",
+                                    "type": "String",
+                                    "optional": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "Digiposte": {
+            "name": "Digiposte",
+            "shortname": "Digiposte",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "laPosteSdk",
+            "file": "lib/lp-sdk.js",
+            "line": 132,
+            "description": "This class provides services of the Digiposte API.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "accessToken",
+                            "description": "The La Poste access token.",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "dgpAccessToken",
+                            "description": "The Digiposte access token.",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "config",
+                            "description": "Custom configuration.",
+                            "type": "String",
+                            "optional": true,
+                            "props": [
+                                {
+                                    "name": "baseUrl",
+                                    "description": "Base URL of API resources.",
+                                    "type": "String",
+                                    "optional": true,
+                                    "optdefault": "https://api.laposte.fr/digiposte/1.0"
+                                },
+                                {
+                                    "name": "request",
+                                    "description": "Default configuration for request module.",
+                                    "type": "String",
+                                    "optional": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 25,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "httpErrorHandler",
+            "class": "HttpError"
+        },
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 36,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "buildAsyncRequest",
+            "class": "HttpError"
+        },
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 70,
+            "description": "Authenticate a developer, and provide a token for La Poste Open API.",
+            "itemtype": "method",
+            "name": "auth",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "consumerKey",
+                            "description": "The consumer key.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "consumerSecret",
+                            "description": "The consumer secret.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "username",
+                            "description": "The developer account username.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "password",
+                            "description": "The developer account password.",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cb",
+                    "description": "The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "optional": 1,
+            "return": {
+                "description": "A promise, fulfilled when the request is done.",
+                "type": "Promise"
+            },
+            "throws": {
+                "description": "An HTTP error including status code and body.",
+                "type": "HttpError"
+            },
+            "example": [
+                "\n\n     var lpSdk = require('lp-sdk')\n       , lp = new lpSdk.LaPoste();\n\n     lp.auth({\n       consumerKey: 'zzzz-aaa-ccc',\n       consumerSecret: 'aaaa-ccc-rrr',\n       username: 'john',\n       password: 'mysecret'\n     }, function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });\n"
+            ],
+            "class": "LaPoste"
+        },
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 157,
+            "description": "Authenticate a Digiposte customer, and provide a token for Digiposte API services.",
+            "itemtype": "method",
+            "name": "auth",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "username",
+                            "description": "The Digiposte account username.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "password",
+                            "description": "The Digiposte account password.",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cb",
+                    "description": "The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "optional": 1,
+            "return": {
+                "description": "A promise, fulfilled when the request is done.",
+                "type": "Promise"
+            },
+            "throws": {
+                "description": "An HTTP error including status code and body.",
+                "type": "HttpError"
+            },
+            "example": [
+                "\n     var lpSdk = require('lp-sdk')\n       , dgp = new lpSdk.Digiposte();\n\n     dgp.auth({\n       user: 'tom',\n       password: 'mypassword'\n     }, function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });"
+            ],
+            "class": "Digiposte"
+        },
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 216,
+            "description": "Get documents of the safebox.",
+            "itemtype": "method",
+            "name": "getDocs",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "index",
+                            "description": "The index of the pagination.",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "maxResults",
+                            "description": "The maximum number of results returned.",
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "sort",
+                            "description": "The field on which you want to sort the results.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "direction",
+                            "description": "The direction in which you want to sort the results, for the given field.",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cb",
+                    "description": "The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "optional": 1,
+            "return": {
+                "description": "A promise, fulfilled when the request is done.",
+                "type": "Promise"
+            },
+            "throws": {
+                "description": "An HTTP error including status code and body.",
+                "type": "HttpError"
+            },
+            "example": [
+                "\n     var lpSdk = require('lp-sdk')\n       , dgp = new lpSdk.Digiposte({\n         accessToken: 'zzz-eee-aaa-vvv',\n         dgpAccessToken: 'kkk-ccc-vvv-rrr'\n       });\n\n     // Get all docs\n     dgp.getDocs(function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });\n\n     // Get first doc\n     dgp.getDocs({\n       index: 1,\n       maxResults: 1\n     }, function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });\n\n     // Get docs of the trash location\n     dgp.getDocs({location: 'trash'}, function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });"
+            ],
+            "class": "Digiposte"
+        }
+    ],
+    "warnings": []
+}
