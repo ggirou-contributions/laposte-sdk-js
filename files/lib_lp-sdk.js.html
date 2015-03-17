@@ -154,6 +154,8 @@ function LaPoste(config) {
 /**
  * Authenticate a developer, and provide a token for La Poste Open API.
  *
+ * The resulting token is stored as &quot;accessToken&quot; instance attribute.
+ *
  * @method auth
  * @async
  * @param {Object} options Options object.
@@ -197,11 +199,11 @@ LaPoste.prototype.auth = function (opt, cb) {
       uri: &#x27;/oauth2/token&#x27;,
       json: true,
       form: {
-        &#x27;client_id&#x27;: opt.consumerKey,
-        &#x27;client_secret&#x27;: opt.consumerSecret,
+        &#x27;client_id&#x27;: opt.consumerKey || process.env[&#x27;LAPOSTE_API_CONSUMER_KEY&#x27;],
+        &#x27;client_secret&#x27;: opt.consumerSecret || process.env[&#x27;LAPOSTE_API_CONSUMER_SECRET&#x27;],
         &#x27;grant_type&#x27;: &#x27;password&#x27;,
-        username: opt.username,
-        password: opt.password
+        username: opt.username || process.env[&#x27;LAPOSTE_API_USERNAME&#x27;],
+        password: opt.password || process.env[&#x27;LAPOSTE_API_PASSWORD&#x27;]
       }
     })
     .spread(httpErrorHandler)
@@ -240,6 +242,8 @@ function Digiposte(opt) {
 
 /**
  * Authenticate a Digiposte customer, and provide a token for Digiposte API services.
+ *
+ * The resulting token is stored as &quot;dgpAccessToken&quot; instance attribute.
  *
  * @method auth
  * @async
