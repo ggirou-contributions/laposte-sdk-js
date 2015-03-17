@@ -63603,7 +63603,7 @@ Digiposte.prototype.auth = function (opt, cb) {
       method: 'POST',
       uri: '/login',
       headers: {
-        'Authorization': util.format('Bearer %s', opt.accessToken)
+        'Authorization': util.format('Bearer %s', opt.accessToken || process.env['LAPOSTE_API_ACCESS_TOKEN'])
       },
       json: true,
       body: {
@@ -63615,7 +63615,7 @@ Digiposte.prototype.auth = function (opt, cb) {
     })
     .spread(httpErrorHandler)
     .then(function (result) {
-      that.accessToken = opt.accessToken;
+      that.accessToken = opt.accessToken || process.env['LAPOSTE_API_ACCESS_TOKEN'];
       that.dgpAccessToken = result['access_token'];
       that.dgpRefreshToken = result['refresh_token'];
       return result;
@@ -63710,11 +63710,6 @@ Digiposte.prototype.getDocs = function (opt, cb) {
 
 Digiposte.prototype.getDoc = function (opt, cb) {
   var that = this;
-  if (typeof cb === 'undefined' && typeof opt === 'function') {
-    cb = opt;
-    opt = null;
-  }
-  opt = opt || {};
   return that.apiRequest(
     {
       uri: util.format('/document/%s', opt.id),
