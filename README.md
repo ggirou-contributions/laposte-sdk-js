@@ -32,8 +32,47 @@ bower install lp-sdk
 
 Alternately, simply add the following script tag to your HTML pages :
 
+#### AMD version
+
+Minified :
+
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/lib/client-lp-sdk.min.js"></script>
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk.min.js"></script>
+```
+
+Non minified :
+
+```html
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk.js"></script>
+```
+
+then :
+
+```javascript
+var lpSdk = require('lp-sdk')
+  , lp = new lpSdk.LaPoste()
+  , dgp = new lpSdk.Digiposte();
+```
+
+#### Global version
+
+Minified :
+
+```html
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk-bootstrap.min.js"></script>
+```
+
+Non minified :
+
+```html
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk-bootstrap.js"></script>
+```
+
+then :
+
+```javascript
+var lp = new lpSdk.LaPoste()
+  , dgp = new lpSdk.Digiposte();
 ```
 
 ## What's provided?

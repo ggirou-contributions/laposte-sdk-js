@@ -64,7 +64,7 @@ function LaPoste(config) {
   that.config = {
     baseUrl: process.env['LAPOSTE_API_BASE_URL'] || 'https://api.laposte.fr/',
     request: {
-      strictSSL: false
+      strictSSL: process.env['LAPOSTE_API_STRICT_SSL'] ? process.env['LAPOSTE_API_STRICT_SSL'] !== 'false' : true
     }
   };
   _.extend(that.config, config);
@@ -153,7 +153,7 @@ function Digiposte(opt) {
   that.config = {
     baseUrl: process.env['DIGIPOSTE_API_BASE_URL'] || 'https://api.laposte.fr/digiposte/1.0',
     request: {
-      strictSSL: false
+      strictSSL: process.env['DIGIPOSTE_API_STRICT_SSL'] ? process.env['LAPOSTE_API_STRICT_SSL'] !== 'false' : true
     }
   };
   _.extend(that, opt);
@@ -206,8 +206,8 @@ Digiposte.prototype.auth = function (opt, cb) {
       json: true,
       body: {
         credential: {
-          user: opt.username,
-          password: opt.password
+          user: opt.username || process.env['DIGIPOSTE_API_USERNAME'],
+          password: opt.password || process.env['DIGIPOSTE_API_PASSWORD']
         }
       }
     })
