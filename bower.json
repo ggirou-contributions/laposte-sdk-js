@@ -1,0 +1,32 @@
+{
+  "name": "laposte-sdk",
+  "version": "0.0.1",
+  "private": true,
+  "description": "La Poste Open API SDK for JavaScript in the browser",
+  "main": "lib/client-lp-sdk.min.js",
+  "homepage": "https://github.com/LaPosteApi/laposte-sdk",
+  "authors": [
+    "Developer <developer@laposte.io>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "La Poste",
+    "Open API",
+    "API",
+    "Digiposte"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "build",
+    "bower_components",
+    "dist",
+    "lib/lp-sdk.js",
+    "lib/lp-sdk-bootstrap.js",
+    "node_modules",
+    "samples",
+    "test"
+  ]
+}

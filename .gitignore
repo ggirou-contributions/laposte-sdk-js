@@ -1,0 +1,6 @@
+.grunt
+.idea
+*.log
+dist
+node_modules
+tmp

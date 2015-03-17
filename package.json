@@ -1,0 +1,68 @@
+{
+  "name": "laposte-sdk",
+  "version": "0.0.1",
+  "private": true,
+  "description": "La Poste Open API SDK for JavaScript in the browser and Node.js",
+  "main": "lib/lp-sdk.js",
+  "author": "Developer <developer@laposte.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LaPosteApi/laposte-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LaPosteApi/laposte-sdk/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/LaPosteApi/laposte-sdk/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": "node >= 0.10.x"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "lib"
+      ],
+      "data-cover-never": [
+        "samples",
+        "node_modules",
+        "test"
+      ]
+    }
+  },
+  "keywords": [
+    "La Poste",
+    "Open API",
+    "API",
+    "Digiposte"
+  ],
+  "dependencies": {
+    "bluebird": "^2.9.14",
+    "lodash": "^3.5.0",
+    "request": "^2.53.0",
+    "url-join": "0.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "chai": "^2.1.1",
+    "envify": "^3.4.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-yuidoc": "^0.7.0",
+    "grunt-exec": "^0.4.6",
+    "grunt-gh-pages": "^0.10.0",
+    "grunt-mkdir": "^0.1.2",
+    "grunt-mocha-cov": "^0.3.0",
+    "grunt-notify": "^0.4.1",
+    "jshint-stylish": "^1.0.1",
+    "load-grunt-tasks": "^3.1.0",
+    "mocha": "^2.2.0",
+    "time-grunt": "^1.1.0"
+  }
+}

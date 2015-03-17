@@ -1,0 +1,40 @@
+html {
+  background-color: #76523b;
+  font-size: 1.2em;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+body {
+  margin: auto;
+  background-color: white;
+  width: 780px;
+  padding: 40px;
+  border-radius: 6px;
+}
+
+p {
+  min-width: 700px;
+}
+
+label {
+}
+
+input {
+  display: block;
+  width: 250px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+button {
+  margin-top: 10px;
+  width: 250px;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+button:hover {
+  cursor: pointer;
+}

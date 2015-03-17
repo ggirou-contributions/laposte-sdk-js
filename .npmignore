@@ -1,0 +1,11 @@
+.idea
+.gitignore
+.travis.yml
+build
+client
+dist
+lib/client-*.js
+samples
+tmp
+Gruntfile.js
+jshint.json

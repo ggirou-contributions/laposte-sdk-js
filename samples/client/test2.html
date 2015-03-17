@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>La Poste Open API - samples</title>
+  <script src="../../client/client-lp-sdk.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<h2>La Poste Open API</h2>
+
+<h3>Sample #2</h3>
+
+<form>
+  <fieldset>
+    <legend>La Poste:</legend>
+    <p>
+      <label>
+        Consumer key :
+        <input type="text" id="consumerKey">
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Consumer secret :
+        <input type="text" id="consumerSecret">
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Username :
+        <input type="text" id="username">
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Password :
+        <input type="text" id="password">
+      </label>
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Digiposte:</legend>
+    <p>
+      <label>
+        Username :
+        <input type="text" id="dgpUsername">
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Password :
+        <input type="text" id="dgpPassword">
+      </label>
+    </p>
+  </fieldset>
+</form>
+
+<button id="go">Go</button>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function (/*event*/) {
+
+    var lpSdk = require('lp-sdk')
+        , lp = new lpSdk.LaPoste()
+        , dgp = new lpSdk.Digiposte()
+        , goButton = document.getElementById('go');
+
+    goButton.onclick = function () {
+      lp.auth(
+          {
+            consumerKey: document.getElementById('consumerKey').value,
+            consumerSecret: document.getElementById('consumerSecret').value,
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+          })
+          .then(function () {
+            return dgp.auth({
+              accessToken: lp.accessToken,
+              username: document.getElementById('dgpUsername').value,
+              password: document.getElementById('dgpPassword').value
+            });
+          })
+          .then(function () {
+            return dgp.getDocs();
+          })
+          .then(function (docs) {
+            var textNode = document.createElement('pre');
+            textNode.innerText = JSON.stringify(docs, null, 2);
+            document.body.appendChild(textNode);
+          })
+          .catch(function (err) {
+            console.error(err);
+          });
+    };
+
+  });
+
+</script>
+
+</body>
+</html>
