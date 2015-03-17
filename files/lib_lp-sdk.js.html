@@ -144,7 +144,7 @@ function LaPoste(config) {
   that.config = {
     baseUrl: process.env[&#x27;LAPOSTE_API_BASE_URL&#x27;] || &#x27;https://api.laposte.fr/&#x27;,
     request: {
-      strictSSL: false
+      strictSSL: process.env[&#x27;LAPOSTE_API_STRICT_SSL&#x27;] ? process.env[&#x27;LAPOSTE_API_STRICT_SSL&#x27;] !== &#x27;false&#x27; : true
     }
   };
   _.extend(that.config, config);
@@ -233,7 +233,7 @@ function Digiposte(opt) {
   that.config = {
     baseUrl: process.env[&#x27;DIGIPOSTE_API_BASE_URL&#x27;] || &#x27;https://api.laposte.fr/digiposte/1.0&#x27;,
     request: {
-      strictSSL: false
+      strictSSL: process.env[&#x27;DIGIPOSTE_API_STRICT_SSL&#x27;] ? process.env[&#x27;LAPOSTE_API_STRICT_SSL&#x27;] !== &#x27;false&#x27; : true
     }
   };
   _.extend(that, opt);
@@ -281,19 +281,19 @@ Digiposte.prototype.auth = function (opt, cb) {
       method: &#x27;POST&#x27;,
       uri: &#x27;/login&#x27;,
       headers: {
-        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, opt.accessToken)
+        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, opt.accessToken || process.env[&#x27;LAPOSTE_API_ACCESS_TOKEN&#x27;])
       },
       json: true,
       body: {
         credential: {
-          user: opt.username,
-          password: opt.password
+          user: opt.username || process.env[&#x27;DIGIPOSTE_API_USERNAME&#x27;],
+          password: opt.password || process.env[&#x27;DIGIPOSTE_API_PASSWORD&#x27;]
         }
       }
     })
     .spread(httpErrorHandler)
     .then(function (result) {
-      that.accessToken = opt.accessToken;
+      that.accessToken = opt.accessToken || process.env[&#x27;LAPOSTE_API_ACCESS_TOKEN&#x27;];
       that.dgpAccessToken = result[&#x27;access_token&#x27;];
       that.dgpRefreshToken = result[&#x27;refresh_token&#x27;];
       return result;
@@ -388,11 +388,6 @@ Digiposte.prototype.getDocs = function (opt, cb) {
 
 Digiposte.prototype.getDoc = function (opt, cb) {
   var that = this;
-  if (typeof cb === &#x27;undefined&#x27; &amp;&amp; typeof opt === &#x27;function&#x27;) {
-    cb = opt;
-    opt = null;
-  }
-  opt = opt || {};
   return that.apiRequest(
     {
       uri: util.format(&#x27;/document/%s&#x27;, opt.id),
