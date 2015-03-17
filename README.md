@@ -48,10 +48,12 @@ Non minified :
 
 then :
 
-```javascript
+```html
+<script>
 var lpSdk = require('lp-sdk')
   , lp = new lpSdk.LaPoste()
   , dgp = new lpSdk.Digiposte();
+</script>
 ```
 
 #### Global version
@@ -70,9 +72,11 @@ Non minified :
 
 then :
 
-```javascript
+```html
+<script>
 var lp = new lpSdk.LaPoste()
   , dgp = new lpSdk.Digiposte();
+</script>
 ```
 
 ## What's provided?
