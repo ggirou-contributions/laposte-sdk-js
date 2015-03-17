@@ -344,6 +344,94 @@
                 "\n     var lpSdk = require('lp-sdk')\n       , dgp = new lpSdk.Digiposte({\n         accessToken: 'zzz-eee-aaa-vvv',\n         dgpAccessToken: 'kkk-ccc-vvv-rrr'\n       });\n\n     // Get all docs\n     dgp.getDocs(function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });\n\n     // Get first doc\n     dgp.getDocs({\n       index: 1,\n       maxResults: 1\n     }, function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });\n\n     // Get docs of the trash location\n     dgp.getDocs({location: 'trash'}, function (err, result) {\n       if (err) {\n         console.error(err);\n         return;\n       }\n       console.log('result :', result);\n     });"
             ],
             "class": "Digiposte"
+        },
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 305,
+            "description": "Get document by id.",
+            "itemtype": "method",
+            "name": "getDoc",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "id",
+                            "description": "The document id.",
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "cb",
+                    "description": "The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "optional": 1,
+            "return": {
+                "description": "A promise, fulfilled when the request is done.",
+                "type": "Promise"
+            },
+            "throws": {
+                "description": "An HTTP error including status code and body.",
+                "type": "HttpError"
+            },
+            "example": [
+                ""
+            ],
+            "todo": [
+                ""
+            ],
+            "class": "Digiposte"
+        },
+        {
+            "file": "lib/lp-sdk.js",
+            "line": 334,
+            "description": "Get document thumbnail.\n\nThe result is a Buffer populated with binary data of downloaded thumbnail.",
+            "itemtype": "method",
+            "name": "getDoc",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "id",
+                            "description": "The document id.",
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "cb",
+                    "description": "The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "optional": 1,
+            "return": {
+                "description": "A promise, fulfilled when the request is done.",
+                "type": "Promise"
+            },
+            "throws": {
+                "description": "An HTTP error including status code and body.",
+                "type": "HttpError"
+            },
+            "example": [
+                ""
+            ],
+            "todo": [
+                ""
+            ],
+            "class": "Digiposte"
         }
     ],
     "warnings": []
