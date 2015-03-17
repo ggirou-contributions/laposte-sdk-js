@@ -97,7 +97,6 @@ describe('Open API La Poste SDK', function () {
         .then(function (result) {
           var titles;
           should.exist(result);
-          console.log('result :', result);
           result.should.have.property('documents').that.is.not.empty;
           result.should.have.property('count').that.is.at.least(result.documents.length);
           titles = _.pluck(result.documents, 'title');
