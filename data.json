@@ -394,7 +394,7 @@
             "line": 334,
             "description": "Get document thumbnail.\n\nThe result is a Buffer populated with binary data of downloaded thumbnail.",
             "itemtype": "method",
-            "name": "getDoc",
+            "name": "getDocThumbnail",
             "async": 1,
             "params": [
                 {

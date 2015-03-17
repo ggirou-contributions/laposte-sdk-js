@@ -233,11 +233,11 @@
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getDoc">getDoc</a>
+                                <a href="#method_getDocs">getDocs</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getDocs">getDocs</a>
+                                <a href="#method_getDocThumbnail">getDocThumbnail</a>
 
                             </li>
                     </ul>
@@ -494,117 +494,6 @@
             </div>
         </div>
 </div>
-<div id="method_getDoc" class="method item">
-    <h3 class="name"><code>getDoc</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>options</code>
-                </li>
-                <li class="arg">
-                        <code class="optional">[cb]</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-        <span class="returns-inline">
-            <span class="type">Promise</span>
-        </span>
-
-
-
-
-
-
-        <span class="flag async">async</span>
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/lib_lp-sdk.js.html#l334"><code>lib&#x2F;lp-sdk.js:334</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Get document thumbnail.</p>
-<p>The result is a Buffer populated with binary data of downloaded thumbnail.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-
-
-                    <div class="param-description">
-                        <p>Options object.</p>
-
-                    </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                    <code class="param-name">id</code>
-                                    <span class="type">Integer</span>
-
-                                <div class="param-description">
-                                    <p>The document id.</p>
-
-                                </div>
-
-                            </li>
-                        </ul>
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[cb]</code>
-                        <span class="type">Function</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        <p>The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type">Promise</span>:
-                    <p>A promise, fulfilled when the request is done.</p>
-
-            </div>
-        </div>
-
-        <div class="throws">
-            <h4>Throws:</h4>
-
-            <div class="throws-description">
-                        <span class="type"><a href="../classes/HttpError.html" class="crosslink">HttpError</a></span>:
-                    <p>An HTTP error including status code and body.</p>
-
-            </div>
-        </div>
-
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                
-            </div>
-        </div>
-</div>
 <div id="method_getDocs" class="method item">
     <h3 class="name"><code>getDocs</code></h3>
 
@@ -777,6 +666,117 @@
    console.log(&#39;result :&#39;, result);
  });
 </code></pre>
+            </div>
+        </div>
+</div>
+<div id="method_getDocThumbnail" class="method item">
+    <h3 class="name"><code>getDocThumbnail</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>options</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[cb]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Promise</span>
+        </span>
+
+
+
+
+
+
+        <span class="flag async">async</span>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/lib_lp-sdk.js.html#l334"><code>lib&#x2F;lp-sdk.js:334</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Get document thumbnail.</p>
+<p>The result is a Buffer populated with binary data of downloaded thumbnail.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>Options object.</p>
+
+                    </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                    <code class="param-name">id</code>
+                                    <span class="type">Integer</span>
+
+                                <div class="param-description">
+                                    <p>The document id.</p>
+
+                                </div>
+
+                            </li>
+                        </ul>
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[cb]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Promise</span>:
+                    <p>A promise, fulfilled when the request is done.</p>
+
+            </div>
+        </div>
+
+        <div class="throws">
+            <h4>Throws:</h4>
+
+            <div class="throws-description">
+                        <span class="type"><a href="../classes/HttpError.html" class="crosslink">HttpError</a></span>:
+                    <p>An HTTP error including status code and body.</p>
+
+            </div>
+        </div>
+
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                
             </div>
         </div>
 </div>
