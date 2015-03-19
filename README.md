@@ -1,8 +1,8 @@
-<!--[![NPM version](https://badge.fury.io/js/laposte-sdk.svg)](http://badge.fury.io/js/laposte-sdk)-->
-[![Build Status](https://travis-ci.org/LaPosteApi/laposte-sdk.png?branch=master)](https://travis-ci.org/LaPosteApi/laposte-sdk)
-[![Coverage Status](https://coveralls.io/repos/LaPosteApi/laposte-sdk/badge.svg)](https://coveralls.io/r/LaPosteApi/laposte-sdk)
+<!--[![NPM version](https://badge.fury.io/js/laposte-sdk-js.svg)](http://badge.fury.io/js/laposte-sdk-js)-->
+[![Build Status](https://travis-ci.org/LaPosteApi/laposte-sdk-js.png?branch=master)](https://travis-ci.org/LaPosteApi/laposte-sdk-js)
+[![Coverage Status](https://coveralls.io/repos/LaPosteApi/laposte-sdk-js/badge.svg)](https://coveralls.io/r/LaPosteApi/laposte-sdk-js)
 
-## laposte-sdk
+# laposte-sdk-js
 
 [![La Poste](assets/logo-laposte.png)](http://laposte.fr/)
 
@@ -37,13 +37,13 @@ Alternately, simply add the following script tag to your HTML pages :
 Minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk.min.js"></script>
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk.min.js"></script>
 ```
 
 Non minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk.js"></script>
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk.js"></script>
 ```
 
 then :
@@ -61,13 +61,13 @@ var lpSdk = require('lp-sdk')
 Minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk-bootstrap.min.js"></script>
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk-bootstrap.min.js"></script>
 ```
 
 Non minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/client/client-lp-sdk-bootstrap.js"></script>
+<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk-bootstrap.js"></script>
 ```
 
 then :
@@ -89,7 +89,7 @@ Available services :
 
 This is the main service, its main goal is to deal with Open API token.
 
-Have a look at [LaPoste api doc](http://laposteapi.github.io/laposte-sdk/classes/LaPoste.html) for more information.
+Have a look at [LaPoste api doc](http://laposteapi.github.io/laposte-sdk-js/classes/LaPoste.html) for more information.
 
 ### Digiposte
 
@@ -97,7 +97,7 @@ Digiposte is a safebox web application, and an API provider of the Groupe La Pos
 
 The Digiposte class exposes all the things you need to consume Digiposte APIs.
 
-Have a look at [Digiposte api doc](http://laposteapi.github.io/laposte-sdk/classes/Digiposte.html) for more information.
+Have a look at [Digiposte api doc](http://laposteapi.github.io/laposte-sdk-js/classes/Digiposte.html) for more information.
 
 ## Usage
 
@@ -144,10 +144,10 @@ lp.auth( // Authenticate to La Poste
 
 ## API doc
 
-Complete API doc of the SDK : [laposteapi.github.io/laposte-sdk](http://laposteapi.github.io/laposte-sdk/)
+Complete API doc of the SDK : [laposteapi.github.io/laposte-sdk-js](http://laposteapi.github.io/laposte-sdk-js/modules/laPosteSdk.html)
 
 ## License
 
-This SDK is distributed under the [MIT License](https://raw.githubusercontent.com/LaPosteApi/laposte-sdk/master/LICENSE).
+This SDK is distributed under the [MIT License](https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/LICENSE).
 
 Enjoy !

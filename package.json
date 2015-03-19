@@ -2,20 +2,20 @@
   "name": "laposte-sdk",
   "version": "0.0.1",
   "private": true,
-  "description": "La Poste Open API SDK for JavaScript in the browser and Node.js",
+  "description": "Developer kit to consume La Poste open APIs using JavaScript in the browser and Node.js",
   "main": "lib/lp-sdk.js",
   "author": "Developer <developer@laposte.io>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/LaPosteApi/laposte-sdk.git"
+    "url": "git://github.com/LaPosteApi/laposte-sdk-js.git"
   },
   "bugs": {
-    "url": "https://github.com/LaPosteApi/laposte-sdk/issues"
+    "url": "https://github.com/LaPosteApi/laposte-sdk-js/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/LaPosteApi/laposte-sdk/blob/master/LICENSE"
+      "url": "https://github.com/LaPosteApi/laposte-sdk-js/blob/master/LICENSE"
     }
   ],
   "engines": {
@@ -63,6 +63,7 @@
     "jshint-stylish": "^1.0.1",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.2.0",
+    "request-debug": "^0.1.1",
     "time-grunt": "^1.1.0"
   }
 }

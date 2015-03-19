@@ -84,7 +84,7 @@ module.exports = function (grunt) {
         name: '<%= pkg.name %>',
         description: '<%= pkg.description %>',
         version: '<%= pkg.version %>',
-        url: '<%= pkg.homepage %>',
+        url: '/modules/laPosteSdk.html',
         options: {
           paths: 'lib/',
           themedir: 'build/doc/themes/laposte/',
