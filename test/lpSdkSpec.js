@@ -8,7 +8,7 @@ describe('Open API La Poste SDK', function () {
 
   it('should get a La Poste SDK instance', function () {
     var lpSdk = require('../lib/lp-sdk')
-      , serviceNames = ['LaPoste', 'HttpError', 'Digiposte', 'SuiviUnifie'];
+      , serviceNames = ['LaPoste', 'HttpError', 'Digiposte'/*, 'SuiviUnifie'*/];
     should.exist(lpSdk);
     lpSdk.should.be.ok;
     serviceNames.forEach(function (serviceName) {
