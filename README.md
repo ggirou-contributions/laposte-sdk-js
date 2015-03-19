@@ -4,7 +4,7 @@
 
 # La Poste Open API SDK JavaScript
 
-[![La Poste](assets/logo-laposte.png)](http://laposte.fr/)
+[![La Poste](assets/logo-laposte.png)](http://laposte.fr/) [JavaScript](assets/js-logo.png)
 
 The official La Poste Open API SDK for JavaScript, supporting browsers and Node.js backends.
 
