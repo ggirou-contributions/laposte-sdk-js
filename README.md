@@ -91,7 +91,7 @@ This is the main service, its main goal is to deal with Open API token.
 
 Have a look at [LaPoste api doc](http://laposteapi.github.io/laposte-sdk-js/classes/LaPoste.html) for more information.
 
-### Digiposte
+### [Digiposte](http://www.laposte.fr/particulier/produits/presentation/digiposte/vos-donnees-securisees-a-vie)
 
 Digiposte is a safebox web application, and an API provider of the Groupe La Poste.
 
