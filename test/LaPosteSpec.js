@@ -40,7 +40,7 @@ describe('LaPoste API', function () {
 
   it('should refresh the La Poste token', function () {
     var lp = new lpSdk.LaPoste();
-    return lp.auth()
+    return lp.refeshAccessToken()
       .then(function (result) {
         should.exist(result);
         result.should.have.property('scope', 'default');
