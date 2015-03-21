@@ -4,7 +4,7 @@
   "private": true,
   "description": "La Poste Open API SDK for JavaScript in the browser",
   "main": "lib/client-lp-sdk.min.js",
-  "homepage": "https://github.com/LaPosteApi/laposte-sdk",
+  "homepage": "https://github.com/LaPosteApi/laposte-sdk-js",
   "authors": [
     "Developer <developer@laposte.io>"
   ],

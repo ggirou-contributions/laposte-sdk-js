@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/LaPosteApi/laposte-sdk-js.png?branch=master)](https://travis-ci.org/LaPosteApi/laposte-sdk-js)
 [![Coverage Status](https://coveralls.io/repos/LaPosteApi/laposte-sdk-js/badge.svg)](https://coveralls.io/r/LaPosteApi/laposte-sdk-js)
 
+## Coming soon :
 # La Poste Open API SDK JavaScript
 
 <a href="http://laposte.fr/" target="_blank">
@@ -90,7 +91,7 @@ The La Poste Open API developer kit provides some service classes that make API 
 
 Available services :
 
-### LaPoste
+### [LaPoste](https://developer.laposte.fr)
 
 This is the main service, its main goal is to deal with Open API token.
 

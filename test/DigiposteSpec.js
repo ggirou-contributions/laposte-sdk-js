@@ -31,7 +31,7 @@ describe('Digiposte API', function () {
       });
   });
 
-  it('should get a Digiposte token based on environment', function (done) {
+  it('should get a Digiposte token with callback', function (done) {
     return dgp.auth(function (err, result) {
       should.not.exist(err);
       should.exist(result);
@@ -67,7 +67,27 @@ describe('Digiposte API', function () {
         result.should.have.property('documents').that.is.not.empty;
         result.should.have.property('count').that.is.at.least(result.documents.length);
         titles = _.pluck(result.documents, 'title');
-        titles.should.eql(_.sortBy(titles, 'title'));
+        titles.should.eql(_.sortBy(titles, function (a, b) {
+          return a < b;
+        }));
+      });
+  });
+
+  it('should get all documents sorted by title descending', function () {
+    return dgp
+      .getDocs({
+        sort: 'TITLE',
+        direction: 'DESCENDING'
+      })
+      .then(function (result) {
+        var titles;
+        should.exist(result);
+        result.should.have.property('documents').that.is.not.empty;
+        result.should.have.property('count').that.is.at.least(result.documents.length);
+        titles = _.pluck(result.documents, 'title');
+        titles.should.eql(_.sortBy(titles, function (a, b) {
+          return a > b;
+        }));
       });
   });
 
@@ -91,7 +111,7 @@ describe('Digiposte API', function () {
   it('should get a document by id', function () {
     return dgp
       .getDoc({
-        id: docId || process.env['LAPOSTE_API_DOC_ID']
+        id: docId || process.env['DIGIPOSTE_API_DOC_ID']
       })
       .then(function (doc) {
         should.exist(doc);
