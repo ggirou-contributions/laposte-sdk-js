@@ -3,7 +3,8 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "Digiposte",
         "HttpError",
-        "LaPoste"
+        "LaPoste",
+        "SuiviUnifie"
     ],
     "modules": [
         "laPosteSdk"

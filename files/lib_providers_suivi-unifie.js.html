@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>laPosteSdk - laposte-sdk</title>
+    <title>lib/providers/suivi-unifie.js - laposte-sdk</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,53 +79,70 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>laPosteSdk Module</h1>
-<div class="box clearfix meta">
+<h1 class="file-heading">File: lib/providers/suivi-unifie.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x27;use strict&#x27;;
 
-        <div class="foundat">
-            Defined in: <a href="../files/lib_lp-sdk.js.html#l8"><code>lib&#x2F;lp-sdk.js:8</code></a>
-        </div>
+var util = require(&#x27;util&#x27;)
+  , _ = require(&#x27;lodash&#x27;)
+  , helpers = require(&#x27;../helpers&#x27;);
 
-</div>
+/**
+ * This class provides services of the SuiviUnifie API.
+ *
+ * @class SuiviUnifie
+ * @constructor
+ * @param {Object} [options] Options object.
+ * @param {String} [options.accessToken] The La Poste access token.
+ * @param {String} [options.config] Custom configuration.
+ * @param {String} [options.config.baseUrl=https://api.laposte.fr/suiviunifie/1.0] Base URL of API resources.
+ * @param {String} [options.config.request] Default configuration for request module.
+ */
+function SuiviUnifie(opt) {
+  var that = this;
+  opt = opt || {};
+  that.config = {baseUrl: process.env[&#x27;SUIVIUNIFIE_API_BASE_URL&#x27;] || &#x27;https://api.laposte.fr/suiviunifie/1.0&#x27;};
+  _.extend(that, opt);
+  this.apiRequest = helpers.buildAsyncRequest(that.config);
+}
 
+/**
+ * Get parcel by code.
+ *
+ * @method getParcel
+ * @async
+ * @param {Object} options Options object.
+ * @param {Integer} options.code The parcel code.
+ * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
+ * @optional
+ * @return {Promise} A promise, fulfilled when the request is done.
+ * @throws {HttpError} An HTTP error including status code and body.
+ * @example
+ * @TODO
+ */
+SuiviUnifie.prototype.getParcel = function (opt, cb) {
+  var that = this;
+  return that.apiRequest(
+    {
+      uri: &#x27;/parcel&#x27;,
+      headers: {
+        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, that.accessToken)
+      },
+      qs: {
+        key: process.env[&#x27;SUIVIUNIFIE_API_KEY&#x27;],
+        method: &#x27;json&#x27;,
+        code: opt.code
+      },
+      json: true
+    })
+    .spread(helpers.httpErrorHandler)
+    .nodeify(cb);
+};
 
-<div class="box intro">
-    <p>Provides the base class of the La Poste Open API SDK.</p>
-
-</div>
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/Digiposte.html">
-                        Digiposte
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/HttpError.html">
-                        HttpError
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/LaPoste.html">
-                        LaPoste
-                    </a>
-                </li>
-                <li class="module-class">
-                    <a href="../classes/SuiviUnifie.html">
-                        SuiviUnifie
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-    <div class="yui3-u-1-2">
-    </div>
+exports = module.exports = SuiviUnifie;
+    </pre>
 </div>
                     </div>
                 </div>

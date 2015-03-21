@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/lp-sdk.js - laposte-sdk</title>
+    <title>lib/providers/digiposte.js - laposte-sdk</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,60 +79,57 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: lib/lp-sdk.js</h1>
+<h1 class="file-heading">File: lib/providers/digiposte.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x27;use strict&#x27;;
 
-var _ = require(&#x27;lodash&#x27;)
-  , HttpError = require(&#x27;./http-error&#x27;)
-  , helpers = require(&#x27;./helpers&#x27;)
-  , laPosteSdk;
+var util = require(&#x27;util&#x27;)
+  , _ = require(&#x27;lodash&#x27;)
+  , helpers = require(&#x27;../helpers&#x27;);
 
 /**
- * This class provides general service about La Poste Open API.
+ * This class provides services of the Digiposte API.
  *
- * @class LaPoste
+ * @class Digiposte
  * @constructor
  * @param {Object} [options] Options object.
+ * @param {String} [options.accessToken] The La Poste access token.
+ * @param {String} [options.dgpAccessToken] The Digiposte access token.
  * @param {String} [options.config] Custom configuration.
  * @param {String} [options.config.baseUrl=https://api.laposte.fr/digiposte/1.0] Base URL of API resources.
  * @param {String} [options.config.request] Default configuration for request module.
  */
-function LaPoste(config) {
+function Digiposte(opt) {
   var that = this;
-  that.config = {baseUrl: process.env[&#x27;LAPOSTE_API_BASE_URL&#x27;] || &#x27;https://api.laposte.fr/&#x27;};
-  _.extend(that.config, config);
+  opt = opt || {};
+  that.config = {baseUrl: process.env[&#x27;DIGIPOSTE_API_BASE_URL&#x27;] || &#x27;https://api.laposte.fr/digiposte/1.0&#x27;};
+  _.extend(that, opt);
   this.apiRequest = helpers.buildAsyncRequest(that.config);
 }
 
 /**
- * Authenticate a developer, and provide a token for La Poste Open API.
+ * Authenticate a Digiposte customer, and provide a token for Digiposte API services.
  *
- * The resulting token is stored as &quot;accessToken&quot; instance attribute.
+ * The resulting token is stored as &quot;dgpAccessToken&quot; instance attribute.
  *
  * @method auth
  * @async
  * @param {Object} options Options object.
- * @param {String} options.consumerKey The consumer key.
- * @param {String} options.consumerSecret The consumer secret.
- * @param {String} options.username The developer account username.
- * @param {String} options.password The developer account password.
+ * @param {String} options.username The Digiposte account username.
+ * @param {String} options.password The Digiposte account password.
  * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
  * @optional
  * @return {Promise} A promise, fulfilled when the request is done.
  * @throws {HttpError} An HTTP error including status code and body.
  * @example
- *
  *      var lpSdk = require(&#x27;lp-sdk&#x27;)
- *        , lp = new lpSdk.LaPoste();
+ *        , dgp = new lpSdk.Digiposte();
  *
- *      lp.auth({
- *        consumerKey: &#x27;zzzz-aaa-ccc&#x27;,
- *        consumerSecret: &#x27;aaaa-ccc-rrr&#x27;,
- *        username: &#x27;john&#x27;,
- *        password: &#x27;mysecret&#x27;
+ *      dgp.auth({
+ *        user: &#x27;tom&#x27;,
+ *        password: &#x27;mypassword&#x27;
  *      }, function (err, result) {
  *        if (err) {
  *          console.error(err);
@@ -140,9 +137,8 @@ function LaPoste(config) {
  *        }
  *        console.log(&#x27;result :&#x27;, result);
  *      });
- *
  */
-LaPoste.prototype.auth = function (opt, cb) {
+Digiposte.prototype.auth = function (opt, cb) {
   var that = this;
   if (typeof cb === &#x27;undefined&#x27; &amp;&amp; typeof opt === &#x27;function&#x27;) {
     cb = opt;
@@ -152,50 +148,62 @@ LaPoste.prototype.auth = function (opt, cb) {
   return that.apiRequest(
     {
       method: &#x27;POST&#x27;,
-      uri: &#x27;/oauth2/token&#x27;,
+      uri: &#x27;/login&#x27;,
+      headers: {
+        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, opt.accessToken || process.env[&#x27;LAPOSTE_API_ACCESS_TOKEN&#x27;])
+      },
       json: true,
-      form: {
-        &#x27;client_id&#x27;: opt.consumerKey || process.env[&#x27;LAPOSTE_API_CONSUMER_KEY&#x27;],
-        &#x27;client_secret&#x27;: opt.consumerSecret || process.env[&#x27;LAPOSTE_API_CONSUMER_SECRET&#x27;],
-        &#x27;grant_type&#x27;: &#x27;password&#x27;,
-        username: opt.username || process.env[&#x27;LAPOSTE_API_USERNAME&#x27;],
-        password: opt.password || process.env[&#x27;LAPOSTE_API_PASSWORD&#x27;]
+      body: {
+        credential: {
+          user: opt.username || process.env[&#x27;DIGIPOSTE_API_USERNAME&#x27;],
+          password: opt.password || process.env[&#x27;DIGIPOSTE_API_PASSWORD&#x27;]
+        }
       }
     })
     .spread(helpers.httpErrorHandler)
     .then(function (result) {
-      that.accessToken = result[&#x27;access_token&#x27;];
-      that.refreshToken = result[&#x27;refresh_token&#x27;];
+      that.accessToken = opt.accessToken || process.env[&#x27;LAPOSTE_API_ACCESS_TOKEN&#x27;];
+      that.dgpAccessToken = result[&#x27;access_token&#x27;];
+      that.dgpRefreshToken = result[&#x27;refresh_token&#x27;];
       return result;
     })
     .nodeify(cb);
 };
 
 /**
- * Refresh the La Poste Open API access token.
+ * Get documents of the safebox.
  *
- * The resulting token is stored as &quot;accessToken&quot; instance attribute.
- *
- * @method refeshAccessToken
+ * @method getDocs
  * @async
  * @param {Object} options Options object.
- * @param {String} options.consumerKey The consumer key.
- * @param {String} options.consumerSecret The consumer secret.
- * @param {String} [options.refreshToken=this.refreshToken] The refresh token.
+ * @param {Integer} options.index The index of the pagination.
+ * @param {Integer} options.maxResults The maximum number of results returned.
+ * @param {String} options.sort The field on which you want to sort the results.
+ * @param {String} options.direction The direction in which you want to sort the results, for the given field.
  * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
  * @optional
  * @return {Promise} A promise, fulfilled when the request is done.
  * @throws {HttpError} An HTTP error including status code and body.
  * @example
- *
  *      var lpSdk = require(&#x27;lp-sdk&#x27;)
- *        , lp = new lpSdk.LaPoste();
+ *        , dgp = new lpSdk.Digiposte({
+ *          accessToken: &#x27;zzz-eee-aaa-vvv&#x27;,
+ *          dgpAccessToken: &#x27;kkk-ccc-vvv-rrr&#x27;
+ *        });
  *
- *      lp.auth({
- *        consumerKey: &#x27;zzzz-aaa-ccc&#x27;,
- *        consumerSecret: &#x27;aaaa-ccc-rrr&#x27;,
- *        username: &#x27;john&#x27;,
- *        password: &#x27;mysecret&#x27;
+ *      // Get all docs
+ *      dgp.getDocs(function (err, result) {
+ *        if (err) {
+ *          console.error(err);
+ *          return;
+ *        }
+ *        console.log(&#x27;result :&#x27;, result);
+ *      });
+ *
+ *      // Get first doc
+ *      dgp.getDocs({
+ *        index: 1,
+ *        maxResults: 1
  *      }, function (err, result) {
  *        if (err) {
  *          console.error(err);
@@ -204,48 +212,110 @@ LaPoste.prototype.auth = function (opt, cb) {
  *        console.log(&#x27;result :&#x27;, result);
  *      });
  *
+ *      // Get docs of the trash location
+ *      dgp.getDocs({location: &#x27;trash&#x27;}, function (err, result) {
+ *        if (err) {
+ *          console.error(err);
+ *          return;
+ *        }
+ *        console.log(&#x27;result :&#x27;, result);
+ *      });
  */
-LaPoste.prototype.refeshAccessToken = function (opt, cb) {
-  var that = this;
+Digiposte.prototype.getDocs = function (opt, cb) {
+  var that = this
+    , params = {};
   if (typeof cb === &#x27;undefined&#x27; &amp;&amp; typeof opt === &#x27;function&#x27;) {
     cb = opt;
     opt = null;
   }
   opt = opt || {};
+  if (typeof opt.index !== &#x27;undefined&#x27;) {
+    params.index = opt.index;
+  }
+  if (typeof opt.maxResults !== &#x27;undefined&#x27;) {
+    params[&#x27;max_results&#x27;] = opt.maxResults;
+  }
+  if (typeof opt.sort !== &#x27;undefined&#x27;) {
+    params.sort = opt.sort;
+  }
+  if (typeof opt.direction !== &#x27;undefined&#x27;) {
+    params.direction = opt.direction;
+  }
   return that.apiRequest(
     {
-      method: &#x27;POST&#x27;,
-      uri: &#x27;/oauth2/token&#x27;,
+      uri: util.format(&#x27;/documents%s&#x27;, opt.location ? &#x27;/&#x27; + opt.location : &#x27;&#x27;),
+      headers: {
+        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, that.accessToken),
+        &#x27;User-Token&#x27;: that.dgpAccessToken
+      },
       json: true,
-      form: {
-        &#x27;client_id&#x27;: opt.consumerKey || process.env[&#x27;LAPOSTE_API_CONSUMER_KEY&#x27;],
-        &#x27;client_secret&#x27;: opt.consumerSecret || process.env[&#x27;LAPOSTE_API_CONSUMER_SECRET&#x27;],
-        &#x27;grant_type&#x27;: &#x27;refresh_token&#x27;,
-        &#x27;refresh_token&#x27;: opt.refreshToken || that.refreshToken || process.env[&#x27;LAPOSTE_API_REFRESH_TOKEN&#x27;]
-      }
+      qs: params
     })
     .spread(helpers.httpErrorHandler)
-    .then(function (result) {
-      that.accessToken = result[&#x27;access_token&#x27;];
-      that.refreshToken = result[&#x27;refresh_token&#x27;];
-      return result;
-    })
     .nodeify(cb);
 };
 
 /**
- * Provides the base class of the La Poste Open API SDK.
+ * Get document by id.
  *
- * @module laPosteSdk
+ * @method getDoc
+ * @async
+ * @param {Object} options Options object.
+ * @param {Integer} options.id The document id.
+ * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
+ * @optional
+ * @return {Promise} A promise, fulfilled when the request is done.
+ * @throws {HttpError} An HTTP error including status code and body.
+ * @example
+ * @TODO
  */
-laPosteSdk = {
-  LaPoste: LaPoste,
-  Digiposte: require(&#x27;./providers/digiposte&#x27;),
-  SuiviUnifie: require(&#x27;./providers/suivi-unifie&#x27;),
-  HttpError: HttpError
+Digiposte.prototype.getDoc = function (opt, cb) {
+  var that = this;
+  return that.apiRequest(
+    {
+      uri: util.format(&#x27;/document/%s&#x27;, opt.id),
+      headers: {
+        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, that.accessToken),
+        &#x27;User-Token&#x27;: that.dgpAccessToken
+      },
+      json: true
+    })
+    .spread(helpers.httpErrorHandler)
+    .nodeify(cb);
 };
 
-exports = module.exports = laPosteSdk;
+/**
+ * Get document thumbnail.
+ *
+ * The result is a Buffer populated with binary data of downloaded thumbnail.
+ *
+ * @method getDocThumbnail
+ * @async
+ * @param {Object} options Options object.
+ * @param {Integer} options.id The document id.
+ * @param {Function} [cb] The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.
+ * @optional
+ * @return {Promise} A promise, fulfilled when the request is done.
+ * @throws {HttpError} An HTTP error including status code and body.
+ * @example
+ * @TODO
+ */
+Digiposte.prototype.getDocThumbnail = function (opt, cb) {
+  var that = this;
+  return that.apiRequest(
+    {
+      uri: util.format(&#x27;/document/%s/thumbnail&#x27;, opt.id),
+      headers: {
+        &#x27;Authorization&#x27;: util.format(&#x27;Bearer %s&#x27;, that.accessToken),
+        &#x27;User-Token&#x27;: that.dgpAccessToken
+      },
+      encoding: null
+    })
+    .spread(helpers.httpErrorHandler)
+    .nodeify(cb);
+};
+
+exports = module.exports = Digiposte;
     </pre>
 </div>
                     </div>

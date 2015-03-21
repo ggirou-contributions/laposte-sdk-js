@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>LaPoste - laposte-sdk</title>
+    <title>SuiviUnifie - laposte-sdk</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,12 +79,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>LaPoste Class</h1>
+<h1>SuiviUnifie Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/lib_lp-sdk.js.html#l8"><code>lib&#x2F;lp-sdk.js:8</code></a>
+            Defined in: <a href="../files/lib_providers_suivi-unifie.js.html#l7"><code>lib&#x2F;providers&#x2F;suivi-unifie.js:7</code></a>
         </div>
 
             Module: <a href="../modules/laPosteSdk.html">laPosteSdk</a>
@@ -93,14 +93,14 @@
 
 
 <div class="box intro">
-    <p>This class provides general service about La Poste Open API.</p>
+    <p>This class provides services of the SuiviUnifie API.</p>
 
 </div>
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_LaPoste" class="method item">
-            <h3 class="name"><code>LaPoste</code></h3>
+        <div id="method_SuiviUnifie" class="method item">
+            <h3 class="name"><code>SuiviUnifie</code></h3>
         
                 <div class="args">
                     <span class="paren">(</span><ul class="args-list inline commas">
@@ -120,7 +120,7 @@
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/lib_lp-sdk.js.html#l8"><code>lib&#x2F;lp-sdk.js:8</code></a>
+                <a href="../files/lib_providers_suivi-unifie.js.html#l7"><code>lib&#x2F;providers&#x2F;suivi-unifie.js:7</code></a>
                 </p>
         
         
@@ -148,6 +148,17 @@
         
                                 <ul class="params-list">
                                     <li class="param">
+                                            <code class="param-name optional">[accessToken]</code>
+                                            <span class="type">String</span>
+                                            <span class="flag optional" title="This parameter is optional.">optional</span>
+        
+                                        <div class="param-description">
+                                            <p>The La Poste access token.</p>
+        
+                                        </div>
+        
+                                    </li>
+                                    <li class="param">
                                             <code class="param-name optional">[config]</code>
                                             <span class="type">String</span>
                                             <span class="flag optional" title="This parameter is optional.">optional</span>
@@ -159,7 +170,7 @@
         
                                             <ul class="params-list">
                                                 <li class="param">
-                                                        <code class="param-name optional">[baseUrl=https://api.laposte.fr/digiposte/1.0]</code>
+                                                        <code class="param-name optional">[baseUrl=https://api.laposte.fr/suiviunifie/1.0]</code>
                                                         <span class="type">String</span>
                                                         <span class="flag optional" title="This parameter is optional.">optional</span>
         
@@ -204,11 +215,7 @@
 
                     <ul class="index-list methods">
                             <li class="index-item method">
-                                <a href="#method_auth">auth</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_refeshAccessToken">refeshAccessToken</a>
+                                <a href="#method_getParcel">getParcel</a>
 
                             </li>
                     </ul>
@@ -221,8 +228,8 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_auth" class="method item">
-    <h3 class="name"><code>auth</code></h3>
+<div id="method_getParcel" class="method item">
+    <h3 class="name"><code>getParcel</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
@@ -249,7 +256,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_lp-sdk.js.html#l25"><code>lib&#x2F;lp-sdk.js:25</code></a>
+        <a href="../files/lib_providers_suivi-unifie.js.html#l26"><code>lib&#x2F;providers&#x2F;suivi-unifie.js:26</code></a>
         </p>
 
 
@@ -257,8 +264,7 @@
     </div>
 
     <div class="description">
-        <p>Authenticate a developer, and provide a token for La Poste Open API.</p>
-<p>The resulting token is stored as &quot;accessToken&quot; instance attribute.</p>
+        <p>Get parcel by code.</p>
 
     </div>
 
@@ -278,41 +284,11 @@
 
                         <ul class="params-list">
                             <li class="param">
-                                    <code class="param-name">consumerKey</code>
-                                    <span class="type">String</span>
+                                    <code class="param-name">code</code>
+                                    <span class="type">Integer</span>
 
                                 <div class="param-description">
-                                    <p>The consumer key.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name">consumerSecret</code>
-                                    <span class="type">String</span>
-
-                                <div class="param-description">
-                                    <p>The consumer secret.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name">username</code>
-                                    <span class="type">String</span>
-
-                                <div class="param-description">
-                                    <p>The developer account username.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name">password</code>
-                                    <span class="type">String</span>
-
-                                <div class="param-description">
-                                    <p>The developer account password.</p>
+                                    <p>The parcel code.</p>
 
                                 </div>
 
@@ -358,169 +334,7 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> var lpSdk = require(&#39;lp-sdk&#39;)
-   , lp = new lpSdk.LaPoste();
-
- lp.auth({
-   consumerKey: &#39;zzzz-aaa-ccc&#39;,
-   consumerSecret: &#39;aaaa-ccc-rrr&#39;,
-   username: &#39;john&#39;,
-   password: &#39;mysecret&#39;
- }, function (err, result) {
-   if (err) {
-     console.error(err);
-     return;
-   }
-   console.log(&#39;result :&#39;, result);
- });
-</code></pre>
-            </div>
-        </div>
-</div>
-<div id="method_refeshAccessToken" class="method item">
-    <h3 class="name"><code>refeshAccessToken</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>options</code>
-                </li>
-                <li class="arg">
-                        <code class="optional">[cb]</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-        <span class="returns-inline">
-            <span class="type">Promise</span>
-        </span>
-
-
-
-
-
-
-        <span class="flag async">async</span>
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/lib_lp-sdk.js.html#l89"><code>lib&#x2F;lp-sdk.js:89</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Refresh the La Poste Open API access token.</p>
-<p>The resulting token is stored as &quot;accessToken&quot; instance attribute.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-
-
-                    <div class="param-description">
-                        <p>Options object.</p>
-
-                    </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                    <code class="param-name">consumerKey</code>
-                                    <span class="type">String</span>
-
-                                <div class="param-description">
-                                    <p>The consumer key.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name">consumerSecret</code>
-                                    <span class="type">String</span>
-
-                                <div class="param-description">
-                                    <p>The consumer secret.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name optional">[refreshToken=this.refreshToken]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>The refresh token.</p>
-
-                                </div>
-
-                            </li>
-                        </ul>
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[cb]</code>
-                        <span class="type">Function</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        <p>The callback(err, result) function to be called when the request is fulfilled, if not defined a promise is returned.</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type">Promise</span>:
-                    <p>A promise, fulfilled when the request is done.</p>
-
-            </div>
-        </div>
-
-        <div class="throws">
-            <h4>Throws:</h4>
-
-            <div class="throws-description">
-                        <span class="type"><a href="../classes/HttpError.html" class="crosslink">HttpError</a></span>:
-                    <p>An HTTP error including status code and body.</p>
-
-            </div>
-        </div>
-
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> var lpSdk = require(&#39;lp-sdk&#39;)
-   , lp = new lpSdk.LaPoste();
-
- lp.auth({
-   consumerKey: &#39;zzzz-aaa-ccc&#39;,
-   consumerSecret: &#39;aaaa-ccc-rrr&#39;,
-   username: &#39;john&#39;,
-   password: &#39;mysecret&#39;
- }, function (err, result) {
-   if (err) {
-     console.error(err);
-     return;
-   }
-   console.log(&#39;result :&#39;, result);
- });
-</code></pre>
+                
             </div>
         </div>
 </div>
