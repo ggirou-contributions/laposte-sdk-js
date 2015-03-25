@@ -138,4 +138,16 @@ describe('Digiposte API', function () {
     });
   });
 
+  it('should get a document thumbnail', function () {
+    return dgp
+      .getDocThumbnail({
+        id: docId || process.env['DIGIPOSTE_API_DOC_ID']
+      })
+      .then(function (content) {
+        should.exist(content);
+        content.should.be.an.instanceOf(Buffer);
+        content.should.have.length(711);
+      });
+  });
+
 });
