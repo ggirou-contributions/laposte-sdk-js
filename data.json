@@ -267,6 +267,11 @@
                     "type": "Object",
                     "props": [
                         {
+                            "name": "accessToken",
+                            "description": "The La Poste access token.",
+                            "type": "String"
+                        },
+                        {
                             "name": "username",
                             "description": "The Digiposte account username.",
                             "type": "String"
@@ -301,7 +306,7 @@
         },
         {
             "file": "lib/providers/digiposte.js",
-            "line": 88,
+            "line": 89,
             "description": "Get documents of the safebox.",
             "itemtype": "method",
             "name": "getDocs",
@@ -312,6 +317,11 @@
                     "description": "Options object.",
                     "type": "Object",
                     "props": [
+                        {
+                            "name": "location",
+                            "description": "The location of the documents (NULL, SAFE, INBOX, or TRASH).",
+                            "type": "String"
+                        },
                         {
                             "name": "index",
                             "description": "The index of the pagination.",
@@ -357,8 +367,8 @@
         },
         {
             "file": "lib/providers/digiposte.js",
-            "line": 173,
-            "description": "Get document by id.",
+            "line": 175,
+            "description": "Get a document by id.",
             "itemtype": "method",
             "name": "getDoc",
             "async": 1,
@@ -401,8 +411,8 @@
         },
         {
             "file": "lib/providers/digiposte.js",
-            "line": 202,
-            "description": "Get document thumbnail.\n\nThe result is a Buffer populated with binary data of downloaded thumbnail.",
+            "line": 204,
+            "description": "Get a document thumbnail.\n\nThe result is a Buffer populated with binary data of the downloaded thumbnail.",
             "itemtype": "method",
             "name": "getDocThumbnail",
             "async": 1,
