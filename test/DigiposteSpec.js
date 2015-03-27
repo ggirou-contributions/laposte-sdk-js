@@ -166,7 +166,7 @@ describe('Digiposte API', function () {
 
     });
 
-    describe.only('Profile', function () {
+    describe('Profile', function () {
 
       it('should get the user profile', function () {
         return dgp.getProfile()
