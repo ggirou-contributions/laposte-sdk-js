@@ -150,7 +150,7 @@ lp.auth( // Authenticate to La Poste
 
 ## API doc
 
-Complete API doc of the SDK : [laposteapi.github.io/laposte-sdk-js](http://laposteapi.github.io/laposte-sdk-js/modules/laPosteSdk.html)
+Full documentation : [laposteapi.github.io/laposte-sdk-js](http://laposteapi.github.io/laposte-sdk-js/modules/laPosteSdk.html)
 
 ## License
 
