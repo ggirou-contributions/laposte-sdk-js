@@ -15,7 +15,6 @@ describe('Digiposte API', function () {
   before(function () {
     return lp.auth()
       .then(function (result) {
-        console.log('lp auth!');
         process.env['LAPOSTE_API_ACCESS_TOKEN'] = result['access_token'];
         process.env['LAPOSTE_API_REFRESH_TOKEN'] = result['refresh_token'];
       });
@@ -51,8 +50,16 @@ describe('Digiposte API', function () {
   describe('Features', function () {
 
     before(function () {
-      console.log('hey!');
       return dgp.auth();
+    });
+
+    it('should get the terms of use', function () {
+      return dgp.getTou()
+        .then(function (result) {
+          should.exist(result);
+          result.should.have.property('version');
+          result.should.have.property('href');
+        });
     });
 
     describe('Documents', function () {
@@ -172,7 +179,6 @@ describe('Digiposte API', function () {
         return dgp.getProfile()
           .then(function (profile) {
             should.exist(profile);
-            console.log('profile :', profile);
             [
               'id', 'title', 'first_name', 'last_name', 'date_of_birth', 'id_xiti',
               'login', 'user_type', 'status', 'space_used', 'space_free',
