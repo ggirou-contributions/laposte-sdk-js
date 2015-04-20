@@ -1,6 +1,7 @@
 <!--[![NPM version](https://badge.fury.io/js/laposte-sdk-js.svg)](http://badge.fury.io/js/laposte-sdk-js)-->
 [![Build Status](https://travis-ci.org/LaPosteApi/laposte-sdk-js.png?branch=master)](https://travis-ci.org/LaPosteApi/laposte-sdk-js)
 [![Coverage Status](https://coveralls.io/repos/LaPosteApi/laposte-sdk-js/badge.svg)](https://coveralls.io/r/LaPosteApi/laposte-sdk-js)
+[![Dependencies up to date](https://david-dm.org/LaPosteApi/laposte-sdk-js.svg?style=flat-square)](https://david-dm.org/LaPosteApi/laposte-sdk-js)
 
 ## Coming soon :
 # La Poste Open API SDK JavaScript
