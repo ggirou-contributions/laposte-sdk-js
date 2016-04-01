@@ -44,13 +44,13 @@ Alternately, simply add the following script tag to your HTML pages :
 Minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk.min.js"></script>
+<script src="https://raw.githubusercontent.com/DeveloperLaPoste/laposte-sdk-js/master/client/client-lp-sdk.min.js"></script>
 ```
 
 Non minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk.js"></script>
+<script src="https://raw.githubusercontent.com/DeveloperLaPoste/laposte-sdk-js/master/client/client-lp-sdk.js"></script>
 ```
 
 then :
@@ -68,13 +68,13 @@ var lpSdk = require('lp-sdk')
 Minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk-bootstrap.min.js"></script>
+<script src="https://raw.githubusercontent.com/DeveloperLaPoste/laposte-sdk-js/master/client/client-lp-sdk-bootstrap.min.js"></script>
 ```
 
 Non minified :
 
 ```html
-<script src="https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/client/client-lp-sdk-bootstrap.js"></script>
+<script src="https://raw.githubusercontent.com/DeveloperLaPoste/laposte-sdk-js/master/client/client-lp-sdk-bootstrap.js"></script>
 ```
 
 then :
@@ -96,7 +96,7 @@ Available services :
 
 This is the main service, its main goal is to deal with Open API token.
 
-Have a look at [LaPoste api doc](http://laposteapi.github.io/laposte-sdk-js/classes/LaPoste.html) for more information.
+Have a look at [LaPoste api doc](http://developerlaposte.github.io/laposte-sdk-js/classes/LaPoste.html) for more information.
 
 ### [Digiposte](http://www.laposte.fr/particulier/produits/presentation/digiposte/vos-donnees-securisees-a-vie)
 
@@ -104,7 +104,7 @@ Digiposte is a safebox web application, and an API provider of the Groupe La Pos
 
 The Digiposte class exposes all the things you need to consume Digiposte APIs.
 
-Have a look at [Digiposte api doc](http://laposteapi.github.io/laposte-sdk-js/classes/Digiposte.html) for more information.
+Have a look at [Digiposte api doc](http://developerlaposte.github.io/laposte-sdk-js/classes/Digiposte.html) for more information.
 
 ## Usage
 
@@ -151,10 +151,10 @@ lp.auth( // Authenticate to La Poste
 
 ## API doc
 
-Full documentation : [laposteapi.github.io/laposte-sdk-js](http://laposteapi.github.io/laposte-sdk-js/modules/laPosteSdk.html)
+Full documentation : [developerlaposte.github.io/laposte-sdk-js](http://developerlaposte.github.io/laposte-sdk-js/modules/laPosteSdk.html)
 
 ## License
 
-This SDK is distributed under the [MIT License](https://raw.githubusercontent.com/LaPosteApi/laposte-sdk-js/master/LICENSE).
+This SDK is distributed under the [MIT License](https://raw.githubusercontent.com/DeveloperLaPoste/laposte-sdk-js/master/LICENSE).
 
 Enjoy !
